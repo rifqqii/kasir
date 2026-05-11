@@ -1,27 +1,27 @@
-@extends('layouts.main', ['title' => 'User'])
+@extends('layouts.main', ['title' => 'Pelanggan'])
 
 @section('title-content')
 <i class="fas fa-users mr-2"></i>
-User
+Pelanggan
 @endsection
 
 @section('content')
 
 @if (session('store') == 'success')
     <x-alert type="success">
-        <strong>Berhasil Dibuat!</strong> User berhasil dibuat.
+        <strong>Berhasil dibuat!</strong> Pelanggan berhasil dibuat.
     </x-alert>
 @endif
 
 @if (session('update') == 'success')
     <x-alert type="success">
-        <strong>Berhasil Update!</strong> User berhasil diupdate.
+        <strong>Berhasil diupdate!</strong> Pelanggan berhasil diupdate.
     </x-alert>
 @endif
 
 @if (session('destroy') == 'success')
     <x-alert type="success">
-        <strong>Berhasil Hapus!</strong> User berhasil dihapus.
+        <strong>Berhasil dihapus!</strong> Pelanggan berhasil dihapus.
     </x-alert>
 @endif
 
@@ -29,20 +29,15 @@ User
 
     <div class="card-header form-inline">
 
-        <a href="{{ route('user.create') }}" class="btn btn-primary">
-            <i class="fas fa-plus mr-2"></i>
-            Tambah
+        <a href="{{ route('pelanggan.create') }}" class="btn btn-primary">
+            <i class="fas fa-plus mr-2"></i> Tambah
         </a>
 
         <form action="" method="GET" class="ml-auto">
             <div class="input-group">
 
-                <input
-                    type="text"
-                    class="form-control"
-                    name="search"
-                    value="{{ request()->search }}"
-                    placeholder="Nama, Username">
+                <input type="text" class="form-control" name="search"
+                    value="<?= request()->search ?>" placeholder="Nama">
 
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-primary">
@@ -63,34 +58,39 @@ User
                 <tr>
                     <th>#</th>
                     <th>Nama</th>
-                    <th>Username</th>
+                    <th>Nomor Tlp</th>
+                    <th>Alamat</th>
                     <th></th>
                 </tr>
             </thead>
 
             <tbody>
 
-                @foreach ($users as $key => $user)
+                @foreach ($pelanggans as $key => $pelanggan)
 
                 <tr>
 
-                    <td>{{ $users->firstItem() + $key }}</td>
-                    <td>{{ $user->nama }}</td>
-                    <td>{{ $user->username }}</td>
+                    <td>{{ $pelanggans->firstItem() + $key }}</td>
+                    <td>{{ $pelanggan->nama }}</td>
+                    <td>{{ $pelanggan->nomor_tlp }}</td>
+                    <td>{{ $pelanggan->alamat }}</td>
 
                     <td class="text-right">
 
-                        <a href="{{ route('user.edit', ['user' => $user->id]) }}"
-                           class="btn btn-xs text-success p-0 mr-1">
+                        <a href="{{ route('pelanggan.edit', [
+                            'pelanggan' => $pelanggan->id,
+                        ]) }}"
+                        class="btn btn-xs text-success p-0 mr-1">
+
                             <i class="fas fa-edit"></i>
+
                         </a>
 
-                        <button
-                            type="button"
-                            class="btn btn-xs text-danger p-0 btn-delete"
-                            data-toggle="modal"
-                            data-target="#modalDelete"
-                            data-url="{{ route('user.destroy', ['user' => $user->id]) }}">
+                        <button type="button" data-toggle="modal" data-target="#modalDelete"
+                            data-url="{{ route('pelanggan.destroy', [
+                                'pelanggan' => $pelanggan->id,
+                            ]) }}"
+                            class="btn btn-xs text-danger p-0 btn-delete">
 
                             <i class="fas fa-trash"></i>
 
@@ -109,7 +109,7 @@ User
     </div>
 
     <div class="card-footer">
-        {{ $users->links('vendor.pagination.bootstrap-4') }}
+        {{ $pelanggans->links('vendor.pagination.bootstrap-4') }}
     </div>
 
 </div>

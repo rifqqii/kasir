@@ -25,5 +25,15 @@ class DatabaseSeeder extends Seeder
         'password'=> bcrypt('password'),
        ]);
 
+       \App\Models\Pelanggan::create([
+    'nama' => 'Dodo sidodo',
+    'alamat' => 'Kalipucang',
+    'nomor_tlp' => '082288866677',
+]);
+       \App\Models\Pelanggan::create([
+    'nama' => 'Hanifah',
+    'alamat' => 'Kalipucang',
+    'nomor_tlp' => '082288866677',
+]);
     }
 }
