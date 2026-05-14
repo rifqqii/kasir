@@ -12,6 +12,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+         \App\Models\Produk::create([
+        'kategori_id'=>1 ,
+        ' kode_produk'=>'1001',
+        'nama_produk'=>'Chiki taro',
+        'harga'=>5000
+    ]);
+         \App\Models\Produk::create([
+        'kategori_id'=>1 ,
+        ' kode_produk'=>'1002',
+        'nama_produk'=>'Le minerale',
+        'harga'=>3500
+    ]);
+
+    \App\Models\Kategori::create([
+        'nama_kategori'=>'Makanan ',
+    ]);
+
+\App\Models\Kategori::create([
+    'nama_kategori'=>'Minuman',
+]);
+
         \App\Models\User::create([
             'nama'=>'Administrator',
             'username'=>'admin',
@@ -35,5 +56,7 @@ class DatabaseSeeder extends Seeder
     'alamat' => 'Kalipucang',
     'nomor_tlp' => '082288866677',
 ]);
+
+
     }
 }

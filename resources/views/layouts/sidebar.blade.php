@@ -17,6 +17,11 @@
                 data-widget="treeview" role="menu" data-accordion="false">
 
                 <x-nav-item title="Home" icon="fas fa-home" :routes="['home']" />
+@can('admin')
+<x-nav-item title="Kategori" icon="fas fa-list"
+:routes="['kategori.index', 'kategori.create', 'kategori.edit']" />
+@endcan
+
 <x-nav-item title="Pelanggan" icon="fas fa-users"
 :routes="['pelanggan.index' ,'pelanggan.create','pelanggan.edit']"/>
                 @can('admin')
